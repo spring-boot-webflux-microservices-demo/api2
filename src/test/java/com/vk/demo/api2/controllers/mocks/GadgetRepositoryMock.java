@@ -74,7 +74,7 @@ public class GadgetRepositoryMock implements GadgetRepository {
 
     @Override
     public Mono<Void> deleteById(String s) {
-        return null;
+        return Mono.when(Mono.just(""));
     }
 
     @Override

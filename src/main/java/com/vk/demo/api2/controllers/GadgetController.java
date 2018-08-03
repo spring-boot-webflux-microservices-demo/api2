@@ -30,4 +30,12 @@ public class GadgetController {
         return gadgetRepository.save(gadget);
     }
 
+    @PutMapping("/updateGadget/{oldGadgetId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public @ResponseBody Mono<Gadget> updateGadget(@PathVariable String oldGadgetId, @RequestBody Gadget newGadget) {
+        newGadget.setId(oldGadgetId);
+        Mono<Gadget> updated = gadgetRepository.deleteById(oldGadgetId).then(Mono.just(newGadget)
+                .flatMap(gadgetRepository::save)).switchIfEmpty(Mono.empty());
+        return updated;
+    }
 }

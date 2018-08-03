@@ -34,13 +34,30 @@ public class GadgetControllerTest {
 
     @Test
     public void saveGadget() {
-        gadgetRepository = new GadgetRepositoryMock(Collections.singletonList(GadgetMock.createGadget()));
+        Gadget gadget = GadgetMock.createGadget();
+        gadgetRepository = new GadgetRepositoryMock(Collections.singletonList(gadget));
         webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
         webTestClient.post().uri("/api2/saveGadget")
                 .accept(MediaType.APPLICATION_JSON_UTF8)
-                .body(Mono.just(GadgetMock.createGadget()), Gadget.class)
+                .body(Mono.just(gadget), Gadget.class)
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody().json(GadgetMock.createGadgetRawJsonObject());
+    }
+
+    @Test
+    public void updateGadget_whenGadgetExist_updatedWithHttpStatus201() {
+        Gadget oldGadget = GadgetMock.createGadget("oldType", "oldSpecs");
+        Gadget newGadget = GadgetMock.createGadget("updatedType", "updatedSpecs");
+        String updatedGadgetRawJson = GadgetMock.createGadgetRawJsonObject(
+                new Gadget(oldGadget.getId(), newGadget.getType(), newGadget.getSpecifications()));
+        gadgetRepository = new GadgetRepositoryMock(Collections.singletonList(oldGadget));
+        webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
+        webTestClient.put().uri("/api2/updateGadget/" + oldGadget.getId())
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .body(Mono.just(newGadget), Gadget.class)
+                .exchange()
+                .expectStatus().isCreated()
+                .expectBody().json(updatedGadgetRawJson);
     }
 }

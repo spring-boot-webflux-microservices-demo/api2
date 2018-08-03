@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.ipc.netty.http.server.HttpServerResponse;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api2")
@@ -35,7 +38,9 @@ public class GadgetController {
     public @ResponseBody Mono<Gadget> updateGadget(@PathVariable String oldGadgetId, @RequestBody Gadget newGadget) {
         newGadget.setId(oldGadgetId);
         Mono<Gadget> updated = gadgetRepository.deleteById(oldGadgetId).then(Mono.just(newGadget)
-                .flatMap(gadgetRepository::save)).switchIfEmpty(Mono.empty());
+                .flatMap(gadgetRepository::save))
+                .switchIfEmpty(Mono.empty());
+
         return updated;
     }
 }

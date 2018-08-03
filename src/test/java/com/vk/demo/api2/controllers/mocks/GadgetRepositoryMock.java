@@ -19,7 +19,7 @@ public class GadgetRepositoryMock implements GadgetRepository {
 
     @Override
     public <S extends Gadget> Mono<S> save(S s) {
-        return null;
+        return Mono.just(s);
     }
 
     @Override

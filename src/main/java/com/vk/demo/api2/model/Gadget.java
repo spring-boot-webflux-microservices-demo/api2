@@ -11,6 +11,14 @@ public class Gadget {
     private String type;
     private String specifications;
 
+    public Gadget(){};
+
+    public Gadget(String id, String type, String specifications) {
+        this.id = id;
+        this.type = type;
+        this.specifications = specifications;
+    }
+
     public String getId() {
         return id;
     }

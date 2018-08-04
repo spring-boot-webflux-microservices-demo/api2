@@ -34,7 +34,8 @@ public class GadgetRepositoryMock implements GadgetRepository {
 
     @Override
     public Mono<Gadget> findById(String s) {
-        return null;
+        return mockGadgetList != null && !mockGadgetList.isEmpty() ?
+                Mono.just(mockGadgetList.iterator().next()) : Mono.empty();
     }
 
     @Override

@@ -65,7 +65,6 @@ public class GadgetControllerTest {
     public void updateGadget_whenGadgetNotExist_returnHttpStatus404() {
         Gadget oldGadget = GadgetMock.createGadget("oldType", "oldSpecs");
         Gadget newGadget = GadgetMock.createGadget("updatedType", "updatedSpecs");
-        new Gadget(oldGadget.getId(), newGadget.getType(), newGadget.getSpecifications());
         gadgetRepository = new GadgetRepositoryMock(Collections.emptyList());
         webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
         webTestClient.put().uri("/api2/updateGadget/" + oldGadget.getId())

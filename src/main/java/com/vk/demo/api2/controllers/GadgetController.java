@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
 import java.net.URI;
 
 @RestController
@@ -34,7 +35,6 @@ public class GadgetController {
     }
 
     @PutMapping("/updateGadget/{oldGadgetId}")
-    @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
     Mono<ResponseEntity<Gadget>> updateGadget(@PathVariable String oldGadgetId, @RequestBody Gadget newGadget) {
         newGadget.setId(oldGadgetId);
@@ -43,6 +43,15 @@ public class GadgetController {
                         .map(ng -> new Gadget(oldGadgetId, ng.getType(), ng.getSpecifications()))
                         .flatMap(gadgetRepository::save)
                         .flatMap(a -> Mono.just(ResponseEntity.created(URI.create("/api2/updatedGadget/" + a.getId())).body(a)))))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
+
+    @DeleteMapping("/deleteGadget/{gadgetId}")
+    public @ResponseBody
+    Mono<ResponseEntity<Object>> deleteGadget(@PathVariable String gadgetId) {
+        return gadgetRepository.findById(gadgetId)
+                .flatMap(a -> gadgetRepository.delete(a)
+                        .then(Mono.just(ResponseEntity.noContent().build())))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 }

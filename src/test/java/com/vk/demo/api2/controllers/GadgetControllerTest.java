@@ -73,4 +73,26 @@ public class GadgetControllerTest {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    public void deleteGadget_whenGadgetExist_deletedWithHttpStatus204() {
+        Gadget gadget = GadgetMock.createGadget();
+        gadgetRepository = new GadgetRepositoryMock(Collections.singletonList(gadget));
+        webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
+        webTestClient.delete().uri("/api2/deleteGadget/" + gadget.getId())
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isNoContent();
+    }
+
+    @Test
+    public void deleteGadget_whenGadgetNotExist_returnHttpStatus404() {
+        Gadget gadget = GadgetMock.createGadget();
+        gadgetRepository = new GadgetRepositoryMock(Collections.emptyList());
+        webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
+        webTestClient.delete().uri("/api2/deleteGadget/" + gadget.getId())
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isNotFound();
+    }
 }

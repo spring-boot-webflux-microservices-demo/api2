@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "61b5c747-1932-48ea-8822-574e8d771785",
+		"name": "api2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "7cab064f-6297-401a-9d30-4009a1861f47",
+			"name": "http://localhost:8082/api2/findAllGadgets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8082/api2/findAllGadgets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api2",
+						"findAllGadgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "752ffdc6-370c-4807-aebf-c282ec52b0c2",
+			"name": "http://localhost:8082/api2/saveGadget",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"gadgetId\",\n\t\"type\": \"computer\",\n\t\"specifications\": \"cpu i7 8750H; ram 16GB\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api2/saveGadget",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api2",
+						"saveGadget"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "899bbe39-27b3-4623-bcd3-78da383026bb",
+			"name": "http://localhost:8082/api2/updateGadget/gadgetId",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"gadgetId\",\n\t\"type\": \"computer updated\",\n\t\"specifications\": \"cpu i7 8750H; ram 16GB\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api2/updateGadget/gadgetId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api2",
+						"updateGadget",
+						"gadgetId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c160621d-189b-47ce-b0f7-1231226589e4",
+			"name": "http://localhost:8082/api2/deleteGadget/gadgetId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8082/api2/deleteGadget/gadgetId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api2",
+						"deleteGadget",
+						"gadgetId"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

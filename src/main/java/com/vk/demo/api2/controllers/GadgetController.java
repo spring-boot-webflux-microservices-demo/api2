@@ -1,6 +1,5 @@
 package com.vk.demo.api2.controllers;
 
-import com.google.common.net.MediaType;
 import com.vk.demo.api2.model.Gadget;
 import com.vk.demo.api2.repositories.GadgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;

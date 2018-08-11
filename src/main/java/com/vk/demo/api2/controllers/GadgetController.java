@@ -1,5 +1,6 @@
 package com.vk.demo.api2.controllers;
 
+import com.google.common.net.MediaType;
 import com.vk.demo.api2.model.Gadget;
 import com.vk.demo.api2.repositories.GadgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,10 @@ public class GadgetController {
     }
 
     @GetMapping("/findGadgetById/{id}")
-    public Mono<Gadget> findGadgetById(@PathVariable String id) {
-        return gadgetRepository.findById(id);
+    public Mono<ResponseEntity<Gadget>> findGadgetById(@PathVariable String id) {
+        return gadgetRepository.findById(id)
+                .flatMap(g -> Mono.just(ResponseEntity.ok().body(g)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @PostMapping("/saveGadget")

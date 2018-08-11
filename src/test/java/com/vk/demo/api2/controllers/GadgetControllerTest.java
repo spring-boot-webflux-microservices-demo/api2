@@ -29,7 +29,7 @@ public class GadgetControllerTest {
         webTestClient.get().uri("/api2/findGadgetById/anyId")
                 .accept(MediaType.APPLICATION_JSON_UTF8)
                 .exchange()
-                .expectStatus().isOk()
+                .expectStatus().isNotFound()
                 .expectBody().isEmpty();
     }
 

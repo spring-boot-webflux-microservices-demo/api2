@@ -1,17 +1,20 @@
 {
 	"info": {
-		"_postman_id": "61b5c747-1932-48ea-8822-574e8d771785",
+		"_postman_id": "511f4cf5-49d5-4112-8378-97eb0f2954ee",
 		"name": "api2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"_postman_id": "7cab064f-6297-401a-9d30-4009a1861f47",
+			"_postman_id": "e9ef7dcd-428c-4961-a0db-09d954fbbe31",
 			"name": "http://localhost:8082/api2/findAllGadgets",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8082/api2/findAllGadgets",
 					"protocol": "http",
@@ -28,7 +31,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "752ffdc6-370c-4807-aebf-c282ec52b0c2",
+			"_postman_id": "f314ab7f-3b16-4cc6-a26d-d48942facbf6",
 			"name": "http://localhost:8082/api2/saveGadget",
 			"request": {
 				"method": "POST",
@@ -40,7 +43,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\":\"gadgetId\",\n\t\"type\": \"computer\",\n\t\"specifications\": \"cpu i7 8750H; ram 16GB\"\n}"
+					"raw": "{\n\t\"type\": \"computer\",\n\t\"specifications\": \"cpu i7 8750H; ram 16GB\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api2/saveGadget",
@@ -58,7 +61,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "899bbe39-27b3-4623-bcd3-78da383026bb",
+			"_postman_id": "64b0423b-f9df-4b24-82b6-66c3a49280de",
 			"name": "http://localhost:8082/api2/updateGadget/gadgetId",
 			"request": {
 				"method": "PUT",
@@ -89,12 +92,15 @@
 			"response": []
 		},
 		{
-			"_postman_id": "c160621d-189b-47ce-b0f7-1231226589e4",
+			"_postman_id": "87fce274-11fb-420b-ade4-8e7b847d1a37",
 			"name": "http://localhost:8082/api2/deleteGadget/gadgetId",
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8082/api2/deleteGadget/gadgetId",
 					"protocol": "http",
@@ -105,6 +111,29 @@
 					"path": [
 						"api2",
 						"deleteGadget",
+						"gadgetId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d9236a8c-014b-432e-8503-671ddf3a6e31",
+			"name": "http://localhost:8082/api2/findGadgetById/gadgetId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8082/api2/findGadgetById/gadgetId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api2",
+						"findGadgetById",
 						"gadgetId"
 					]
 				}

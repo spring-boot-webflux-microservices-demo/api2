@@ -27,6 +27,11 @@ public class GadgetController {
         return gadgetRepository.findAll();
     }
 
+    @GetMapping("/findGadgetById/{id}")
+    public Mono<Gadget> findGadgetById(@PathVariable String id) {
+        return gadgetRepository.findById(id);
+    }
+
     @PostMapping("/saveGadget")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody

@@ -18,15 +18,14 @@ import java.util.Collections;
 public class GadgetControllerTest {
 
     private static final String EMPTY_RAW_JSON_LIST = "[]";
-    public static final String EMPTY = "";
     private WebTestClient webTestClient;
     private GadgetRepository gadgetRepository;
 
     @Test
-    public void findGadgetById_whenNoGadgets_returnEmptyBodyWithHttpStatus200() {
+    public void findGadget_whenNoGadgets_returnEmptyBodyWithHttpStatus200() {
         gadgetRepository = new GadgetRepositoryMock(Collections.emptyList());
         webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
-        webTestClient.get().uri("/api2/findGadgetById/anyId")
+        webTestClient.get().uri("/api2/findGadget/anyId")
                 .accept(MediaType.APPLICATION_JSON_UTF8)
                 .exchange()
                 .expectStatus().isNotFound()
@@ -38,7 +37,7 @@ public class GadgetControllerTest {
         Gadget gadgetMock = GadgetMock.createGadget();
         gadgetRepository = new GadgetRepositoryMock(Collections.singletonList(gadgetMock));
         webTestClient = WebTestClient.bindToController(new GadgetController(gadgetRepository)).build();
-        webTestClient.get().uri("/api2/findGadgetById/" + gadgetMock.getId())
+        webTestClient.get().uri("/api2/findGadget/" + gadgetMock.getId())
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         .exchange()
         .expectStatus().isOk()

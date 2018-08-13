@@ -27,8 +27,8 @@ public class GadgetController {
         return gadgetRepository.findAll();
     }
 
-    @GetMapping("/findGadgetById/{id}")
-    public Mono<ResponseEntity<Gadget>> findGadgetById(@PathVariable String id) {
+    @GetMapping("/findGadget/{id}")
+    public Mono<ResponseEntity<Gadget>> findGadget(@PathVariable String id) {
         return gadgetRepository.findById(id)
                 .flatMap(g -> Mono.just(ResponseEntity.ok().body(g)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));

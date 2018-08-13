@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"_postman_id": "e9ef7dcd-428c-4961-a0db-09d954fbbe31",
+			"_postman_id": "afb0ad86-ba2c-47d1-be06-ea4a8290ceac",
 			"name": "http://localhost:8082/api2/findAllGadgets",
 			"request": {
 				"method": "GET",
@@ -31,7 +31,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "f314ab7f-3b16-4cc6-a26d-d48942facbf6",
+			"_postman_id": "658cb906-7894-4fdf-b942-f37c7329da4f",
 			"name": "http://localhost:8082/api2/saveGadget",
 			"request": {
 				"method": "POST",
@@ -61,7 +61,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "64b0423b-f9df-4b24-82b6-66c3a49280de",
+			"_postman_id": "53f5b9d1-bc2a-4a62-b56f-35bdb4ffd812",
 			"name": "http://localhost:8082/api2/updateGadget/gadgetId",
 			"request": {
 				"method": "PUT",
@@ -76,7 +76,7 @@
 					"raw": "{\n\t\"id\":\"gadgetId\",\n\t\"type\": \"computer updated\",\n\t\"specifications\": \"cpu i7 8750H; ram 16GB\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8082/api2/updateGadget/gadgetId",
+					"raw": "http://localhost:8082/api2/updateGadget/5b71811ba6da051f903dabd7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -85,14 +85,14 @@
 					"path": [
 						"api2",
 						"updateGadget",
-						"gadgetId"
+						"5b71811ba6da051f903dabd7"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"_postman_id": "87fce274-11fb-420b-ade4-8e7b847d1a37",
+			"_postman_id": "5878ff0f-cd3c-4c97-bbad-61c3a8ef7292",
 			"name": "http://localhost:8082/api2/deleteGadget/gadgetId",
 			"request": {
 				"method": "DELETE",
@@ -102,7 +102,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8082/api2/deleteGadget/gadgetId",
+					"raw": "http://localhost:8082/api2/deleteGadget/5b71811ba6da051f903dabd7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,21 +111,21 @@
 					"path": [
 						"api2",
 						"deleteGadget",
-						"gadgetId"
+						"5b71811ba6da051f903dabd7"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"_postman_id": "d9236a8c-014b-432e-8503-671ddf3a6e31",
+			"_postman_id": "de798f6f-5a3e-4191-a2ae-104f9dfe767b",
 			"name": "http://localhost:8082/api2/findGadgetById/gadgetId",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8082/api2/findGadgetById/gadgetId",
+					"raw": "http://localhost:8082/api2/findGadget/5b71811ba6da051f903dabd7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -133,8 +133,8 @@
 					"port": "8082",
 					"path": [
 						"api2",
-						"findGadgetById",
-						"gadgetId"
+						"findGadget",
+						"5b71811ba6da051f903dabd7"
 					]
 				}
 			},

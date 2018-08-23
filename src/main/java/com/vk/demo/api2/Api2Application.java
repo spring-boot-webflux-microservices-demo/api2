@@ -10,7 +10,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 @EnableEurekaClient
-@EnableFeignClients
 @EnableCircuitBreaker
 @EnableReactiveMongoRepositories
 @AutoConfigureAfter(EmbeddedMongoAutoConfiguration.class)

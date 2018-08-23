@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @EnableCircuitBreaker
 @EnableReactiveMongoRepositories
 @AutoConfigureAfter(EmbeddedMongoAutoConfiguration.class)
-
 @SpringBootApplication
 public class Api2Application {
 

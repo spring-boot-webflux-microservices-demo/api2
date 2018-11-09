@@ -16,50 +16,50 @@ import java.net.URI;
 @RequestMapping("/api2")
 public class GadgetController {
 
-    private GadgetRepository gadgetRepository;
+	private GadgetRepository gadgetRepository;
 
-    @Autowired
-    public GadgetController(GadgetRepository gadgetRepository) {
-        this.gadgetRepository = gadgetRepository;
-    }
+	@Autowired
+	public GadgetController(GadgetRepository gadgetRepository) {
+		this.gadgetRepository = gadgetRepository;
+	}
 
-    @GetMapping("/findAllGadgets")
-    public Flux<Gadget> findAllGadgets() {
-        return gadgetRepository.findAll();
-    }
+	@GetMapping("/findAllGadgets")
+	public Flux<Gadget> findAllGadgets() {
+		return gadgetRepository.findAll();
+	}
 
-    @GetMapping("/findGadget/{id}")
-    public Mono<ResponseEntity<Gadget>> findGadget(@PathVariable String id) {
-        return gadgetRepository.findById(id)
-                .flatMap(g -> Mono.just(ResponseEntity.ok().body(g)))
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-    }
+	@GetMapping("/findGadget/{id}")
+	public Mono<ResponseEntity<Gadget>> findGadget(@PathVariable String id) {
+		return gadgetRepository.findById(id)
+				.flatMap(g -> Mono.just(ResponseEntity.ok().body(g)))
+				.switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+	}
 
-    @PostMapping("/saveGadget")
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody
-    Mono<Gadget> saveGadget(@RequestBody Gadget gadget) {
-        return gadgetRepository.save(gadget);
-    }
+	@PostMapping("/saveGadget")
+	@ResponseStatus(HttpStatus.CREATED)
+	public @ResponseBody
+	Mono<Gadget> saveGadget(@RequestBody Gadget gadget) {
+		return gadgetRepository.save(gadget);
+	}
 
-    @PutMapping("/updateGadget/{oldGadgetId}")
-    public @ResponseBody
-    Mono<ResponseEntity<Gadget>> updateGadget(@PathVariable String oldGadgetId, @RequestBody Gadget newGadget) {
-        newGadget.setId(oldGadgetId);
-        return gadgetRepository.findById(oldGadgetId)
-                .flatMap(d -> gadgetRepository.deleteById(d.getId()).then(Mono.just(newGadget)
-                        .map(ng -> new Gadget(oldGadgetId, ng.getType(), ng.getSpecifications()))
-                        .flatMap(gadgetRepository::save)
-                        .flatMap(a -> Mono.just(ResponseEntity.created(URI.create("/api2/updatedGadget/" + a.getId())).body(a)))))
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-    }
+	@PutMapping("/updateGadget/{oldGadgetId}")
+	public @ResponseBody
+	Mono<ResponseEntity<Gadget>> updateGadget(@PathVariable String oldGadgetId, @RequestBody Gadget newGadget) {
+		newGadget.setId(oldGadgetId);
+		return gadgetRepository.findById(oldGadgetId)
+				.flatMap(d -> gadgetRepository.deleteById(d.getId()).then(Mono.just(newGadget)
+						.map(ng -> new Gadget(oldGadgetId, ng.getType(), ng.getSpecifications()))
+						.flatMap(gadgetRepository::save)
+						.flatMap(a -> Mono.just(ResponseEntity.created(URI.create("/api2/updatedGadget/" + a.getId())).body(a)))))
+				.switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+	}
 
-    @DeleteMapping("/deleteGadget/{gadgetId}")
-    public @ResponseBody
-    Mono<ResponseEntity<Object>> deleteGadget(@PathVariable String gadgetId) {
-        return gadgetRepository.findById(gadgetId)
-                .flatMap(a -> gadgetRepository.delete(a)
-                        .then(Mono.just(ResponseEntity.noContent().build())))
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-    }
+	@DeleteMapping("/deleteGadget/{gadgetId}")
+	public @ResponseBody
+	Mono<ResponseEntity<Object>> deleteGadget(@PathVariable String gadgetId) {
+		return gadgetRepository.findById(gadgetId)
+				.flatMap(a -> gadgetRepository.delete(a)
+						.then(Mono.just(ResponseEntity.noContent().build())))
+				.switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+	}
 }

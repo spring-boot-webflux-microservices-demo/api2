@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://localhost:4200")
 @RequestMapping("/api2")
 public class GadgetController {
 

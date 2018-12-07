@@ -6,7 +6,7 @@
 	<groupId>com.vk.demo</groupId>
 	<artifactId>api2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>api2</name>
 	<description>Demo project for Spring Boot</description>
